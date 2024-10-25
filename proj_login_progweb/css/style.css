@@ -1,0 +1,176 @@
+@import url('https://fonts.googleapis.com/css2?family=Noto+Sans:wght@400;700&display=swap');
+
+body {
+    margin: 0;
+    font-family: 'Noto Sans', sans-serif;
+}
+
+body * {
+    box-sizing: border-box;
+}
+
+.main-login{
+    width: 100vw;
+    height: 100vh;
+    background: linear-gradient(90deg, rgba(200,229,175,1) 0%, rgba(220,238,178,1) 100%);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.left-login{
+    width: 50vh;
+    height: 100vh;
+    display: flex;
+    /*justify-content refere-se ao eixo x
+    align-itens refere-se ao eixo y*/
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+}
+
+.left-login > h1 {
+    font-size: 3vw;
+    color: #CA7CA3;
+}
+
+.left-login-image{
+    width: 25vw;
+}
+
+.right-login{
+    width: 60vh;
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.card-login{
+    width: 60%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    padding: 30px 35px;
+    background: #CA7CA3;
+    border-radius: 20px;
+    /*no box shadow: 
+    primeiro valor refere-se a x (sombra para direita ou esquerda
+    segundo valor refere-se a y (pra cima ou pra baixo - valor positivo para baixo, negativo para cima)
+    terceiro valor refere-se ao blur
+    quarto valor é a cor
+    */
+    box-shadow: 0px 10px 40px #00000056;
+}
+
+.card-login > h1{
+    color: #DCEEB2    ;
+    font-weight: 800;
+    margin: 0;
+}
+
+/*quando se usa o flex-direction, o
+justify-content passa a referir-se ao eixo y e 
+o align-itens ao eixo x*/
+.textfield{
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    justify-content: center;
+    margin: 10px 0px; /*primeiro valor = eixo y, segundo valor = eixo x*/
+}
+
+.textfield > input{
+    width: 100%;
+    border: none;
+    border-radius: 10px;
+    padding: 15px;
+    background: #FEF9F6;
+    color: #ED9CA1    ;
+    font-size: 12pt;
+    box-shadow: 0px 10px 40px #00000056;
+    outline: none;
+    box-sizing: border-box; /*define que o tamanho da div filho não ultrapasse o tamanho da div pai*/
+}
+
+.textfield > label {
+    color: #FEF9F6;
+    margin-bottom: 10px;
+}
+
+.textfield > input::placeholder{
+    color: #ED9CA1;
+}
+
+.btn-login{
+    width: 100%;
+    margin: 25px;
+    padding: 16px 0px; /*primeiro valor = eixo y, segundo valor = eixo x*/
+    border: none;
+    border-radius: 8px;
+    outline: none;
+    text-transform: uppercase;
+    font-weight: 800;
+    letter-spacing: 3px;
+    color: #CA7CA3;
+    background: #DCEEB2;
+    cursor: pointer; /*altera o cursor para o dedinho ao passar pelo botão*/
+    box-shadow: 0px 5px 40px -12px #00ff8052;
+}
+
+@media only screen and (max-width: 950px){
+    .card-login{
+        width: 85%
+    }
+}
+
+@media only screen and (max-width: 600px){
+    .main-login{
+        flex-direction: column;
+    }
+    .left-login > h1{
+        display: none;
+    }
+    .left-login{
+        width: 100%;
+        height: auto;
+    }
+    .right-login{
+        width: 100%;
+        height: auto;
+    }
+    .left-login-image{
+        width: 40vh;
+    }
+    .card-login{
+        width: 90%;
+    }
+}
+
+@media only screen and (max-width: 950px){
+    .card-login{
+        width: 85%
+    }
+}
+
+@media only screen and (min-width: 1920px){
+    .right-login{
+        width: 60vh;
+        height: 100vh;
+        display: flex;
+        justify-content: flex-end;
+        align-items: center;
+    }
+    .left-login{
+        width: 50vh;
+        height: 100vh;
+        display: flex;
+        /*justify-content refere-se ao eixo x
+        align-itens refere-se ao eixo y*/
+        justify-content: flex-start;
+        align-items: center;
+        flex-direction: column;
+    }
+}
