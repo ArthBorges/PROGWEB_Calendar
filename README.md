@@ -10,5 +10,5 @@ Nesse projeto faremos a implementação de um calendário funcional para a organ
 
 - HTML e CSS
 - JavaScript
-- Vue.JS
+- Node.JS
 - SQLite
