@@ -4,7 +4,6 @@ Nesse projeto faremos a implementação de um calendário funcional para a organ
 
 ## Features
 
-- Login/Autenticação de usuário
 - Criação, edição e remoção de tarefas no calendário
 
 ## Tecnologias utilizadas
