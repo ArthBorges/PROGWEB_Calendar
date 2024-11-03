@@ -6,16 +6,20 @@ import path from 'path';
 import { fileURLToPath } from 'url';
 
 // Esses dois comandos criam o equivalente de __dirname
+// Serve como caminho para um arquivo, por exemplo, C:/crud_db/
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
 
+// Configuração do servidor Express
 const app = express();
 app.use(bodyParser.urlencoded({ extended: true }));
 
+//Route para exibição do formulário HTML
 app.get('/', (req, res) => {
     res.sendFile(__dirname + '/index.html');
 });
 
+//Função para criar um banco de dados:
 async function abrirBanco() {
     return open({
         filename: './banco.db',
@@ -23,18 +27,19 @@ async function abrirBanco() {
     });
 }
 
+//Função para criar uma tabela no banco de dados:
 async function criarTbUser(){
     const db = await abrirBanco();
     db.run(`CREATE TABLE IF NOT EXISTS usuario (id INTEGER PRIMARY KEY AUTOINCREMENT, nome TEXT NOT NULL, sobrenome TEXT NOT NULL)`);
 }
 criarTbUser();
 
+// Insersão de dados no banco:
 app.post('/add', async (req, res) => {
     const { nome, sobrenome } = req.body;
 
     const db = await abrirBanco();
     try {
-        // Insere os dados no banco de dados
         await db.run('INSERT INTO usuario (nome, sobrenome) VALUES (?, ?)', [nome, sobrenome]);
         res.send('Dados inseridos com sucesso!');
     } catch (err) {
@@ -45,6 +50,7 @@ app.post('/add', async (req, res) => {
     }
 });
 
+// Remoção de dados do banco:
 app.post('/remover', async (req, res) => {
     const { id } = req.body;
 
@@ -52,7 +58,7 @@ app.post('/remover', async (req, res) => {
     try {
         const result = await db.run('DELETE FROM usuario WHERE id = ?', [id]);
         
-        // Verifica se algum registro foi deletado
+        // Verifica se algum usuário foi removido
         if (result.changes > 0) {
             res.send(`Usuário com ID ${id} removido com sucesso!`);
         } else {
@@ -66,6 +72,7 @@ app.post('/remover', async (req, res) => {
     }
 });
 
+// Atualiza um usuário no dados através do ID:
 app.post('/att', async (req, res) => {
     const { id, nome, sobrenome } = req.body;
 
@@ -76,7 +83,7 @@ app.post('/att', async (req, res) => {
             [nome, sobrenome, id]
         );
         
-        // Verifica se algum registro foi atualizado
+        // Verifica se algum usuário foi atualizado
         if (result.changes > 0) {
             res.send(`Usuário com ID ${id} atualizado com sucesso!`);
         } else {
@@ -90,6 +97,7 @@ app.post('/att', async (req, res) => {
     }
 });
 
+// Lista todos usuários do banco de dados:
 app.get('/users', async (req, res) => {
     const db = await abrirBanco();
     try {
@@ -110,7 +118,7 @@ app.get('/users', async (req, res) => {
     }
 });
 
-// Inicia o servidor
+// Inicia o servidor localhost com porta 3000
 app.listen(3000, () => {
     console.log('Servidor rodando em http://localhost:3000');
 });
