@@ -1,5 +1,5 @@
 {
-  "name": "teste_db",
+  "name": "crud_db",
   "version": "1.0.0",
   "main": "app.js",
   "scripts": {

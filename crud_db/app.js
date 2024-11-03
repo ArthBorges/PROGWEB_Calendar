@@ -22,7 +22,7 @@ app.get('/', (req, res) => {
 //Função para criar um banco de dados:
 async function abrirBanco() {
     return open({
-        filename: './banco.db',
+        filename: 'crud_db/banco.db',
         driver: sqlite3.Database
     });
 }
